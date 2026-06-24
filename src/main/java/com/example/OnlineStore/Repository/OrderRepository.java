@@ -1,11 +1,11 @@
 package com.example.OnlineStore.Repository;
 
-import com.example.OnlineStore.Entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import com.example.OnlineStore.Entity.Order;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long>
+public interface OrderRepository extends JpaRepository<Order, Long>
 {
 
 }
