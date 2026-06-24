@@ -2,6 +2,7 @@ package com.example.OnlineStore.Entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,15 +11,23 @@ public class Order
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int orderId;
+    private long orderId;
 
-    private Date date;
+    private LocalDateTime datePlaced;
+
+    public Order(){}
+
+    //Constructor
+    public Order(LocalDateTime datePlaced)
+    {
+        this.datePlaced = datePlaced;
+    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "Order")
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
     @OneToOne(mappedBy = "order")
@@ -27,12 +36,12 @@ public class Order
     @OneToOne(mappedBy = "order")
     private Shipment shipment;
 
-    public int getOrderId()
+    public long getOrderId()
     {
         return orderId;
     }
 
-    public void setOrderId(int orderId)
+    public void setOrderId(long orderId)
     {
         this.orderId = orderId;
     }

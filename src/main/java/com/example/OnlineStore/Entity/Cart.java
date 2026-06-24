@@ -10,14 +10,16 @@ public class Cart
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String ID;
+    private long ID;
+
+    public Cart(){}
 
     @OneToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    //Cart can have many items
     @OneToMany(mappedBy = "cart")
     private List<CartItem> cartItems;
 
-    private ArrayList<CartItem> items = new ArrayList<>();
 }

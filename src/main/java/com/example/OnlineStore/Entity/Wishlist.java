@@ -10,18 +10,15 @@ public class Wishlist
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String wishlistId;
+    private long wishlistId;
+
+    public Wishlist(){}
 
     @OneToOne
     @JoinColumn(name = "customer_id", unique = true)
     private Customer customer;
 
-    @OneToMany(mappedBy = "wishlist")
-    private List<Product> products;
-
-
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
             name = "wishlist_products",
             joinColumns = @JoinColumn(name = "wishlist_id"),
@@ -29,12 +26,12 @@ public class Wishlist
     )
     private List<Product> wishlistProducts;
 
-    public String getWishlistId()
+    public long getWishlistId()
     {
         return wishlistId;
     }
 
-    public void setWishlistId(String wishlistId)
+    public void setWishlistId(long wishlistId)
     {
         this.wishlistId = wishlistId;
     }

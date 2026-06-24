@@ -7,10 +7,19 @@ public class OrderItem
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String orderItemId;
+    private long orderItemId;
 
     private int quantity;
     private double price;
+
+    public OrderItem(){}
+
+    //Constructor
+    public OrderItem(int quantity, double price)
+    {
+        this.quantity = quantity;
+        this.price = price;
+    }
 
     @ManyToOne
     @JoinColumn(name = "order_id")

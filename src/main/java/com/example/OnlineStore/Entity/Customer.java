@@ -10,30 +10,42 @@ public class Customer
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String customerId;
+    private long customerId;
     private String firstName;
     private String lastName;
     private String address;
-    private String phoneNUmber;
+    private String phoneNumber;
 
     private String email;
     private String password;
 
+    public Customer(){}
+
+    //Constructor
+    public Customer(String firstName, String lastName, String address,
+                    String phoneNumber, String email, String password)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+    }
+
+    // Customer can have many orders
     @OneToMany(mappedBy = "customer")
     private List<Order> orders;
-
-    @OneToMany(mappedBy = "customer")
-    private List<Payment> payments;
 
     @OneToOne(mappedBy = "customer")
     private Wishlist wishlist;
 
-    public String getCustomerId()
+    public long getCustomerId()
     {
         return customerId;
     }
 
-    public void setCustomerId(String customerId)
+    public void setCustomerId(long customerId)
     {
         this.customerId = customerId;
     }
@@ -68,14 +80,14 @@ public class Customer
         this.address = address;
     }
 
-    public String getPhoneNUmber()
+    public String getPhoneNumber()
     {
-        return phoneNUmber;
+        return phoneNumber;
     }
 
-    public void setPhoneNUmber(String phoneNUmber)
+    public void setPhoneNUmber(String phoneNumber)
     {
-        this.phoneNUmber = phoneNUmber;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail()
